@@ -1,0 +1,244 @@
+
+<div
+  class="container-fluid text-dark "
+  style="
+    background-image: url('assets/images/payment_page_bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    margin-top: -15px;
+    margin-bottom: -8rem;
+  "
+>
+
+<div class="row mt-3 mx-3" style="margin-top:25px ;">
+
+  <div class="col-md-9 mt-5 mb-5 justify-content-center bg-warning ">
+    <div class="card card-custom pb-4 bg-dark text-light">
+      <div class="card-body mt-0 mx-5">
+        <div class="text-center mb-3 pb-2 mt-3 ">
+          <div class="text-container">
+            <h1>Delivery Details</h1>
+          </div>
+        </div>
+        <div class=" mb-3 pb-2 mt-3 ">
+          <h5><strong>Customer Name:</strong> <span class="text text-warning">{{name}}</span></h5>
+        </div>
+        <form [formGroup]="regForm"class="mb-5">
+
+          <div class="row mb-4">
+            <label for="email" class="form-label">Email:</label>
+            <div class="col">
+              <input
+              type="email"
+              id="email"
+              class="form-control text-secondary alert"
+              name="email"
+              [value]="email"
+              disabled
+              required
+              
+            />
+          </div>
+            </div>
+            <div class="col">
+                             
+                <label for="contact" class="form-label">Contact:</label>
+                <input
+                  type="text"
+                  id="contact"
+                  class="form-control text-secondary alert"
+                  name="contact"
+                  required
+                  [value]="contact"
+                  disabled
+                 />
+                 
+                <!-- [(ngModel)]="contact" -->       
+                
+            </div>
+          
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
+                <label for="address" class="form-label is-invalid"
+                >Address:</label
+                >
+                <textarea
+                  id="address"
+                  class="form-control"
+                  formControlName="address"
+                  name="address"
+                  rows="3"
+                  [(ngModel)]="address"
+                  required
+                ></textarea
+                ><!-- [(ngModel)]="address" -->
+                <div
+                  class="alert alert-danger"
+                  *ngIf="
+                    regForm.controls.address.touched &&
+                    regForm.controls.address.invalid
+                  "
+                >
+                  Address should not be blank or invalid
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <label for="city" class="form-label">City:</label>
+                <input
+                  type="text"
+                  id="city"
+                  formControlName="city"
+                  class="form-control"
+                  name="city"
+                  required
+                  [(ngModel)]="city"
+                /><!--  [(ngModel)]="city" -->
+                <div
+                  class="alert alert-danger"
+                  *ngIf="
+                    regForm.controls.city.touched &&
+                    regForm.controls.city.invalid
+                  "
+                >
+                  City should not be blank or invalid
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
+                <label for="state" class="form-label">State:</label>
+                <input
+                  type="text"
+                  id="state"
+                  formControlName="state"
+                  class="form-control"
+                  name="state"
+                  [(ngModel)]="state"
+                  required
+                /><!-- [(ngModel)]="state"   -->
+                <div
+                  class="alert alert-danger"
+                  *ngIf="
+                    regForm.controls.state.touched &&
+                    regForm.controls.state.invalid
+                  "
+                >
+                  State should not be blank or invalid
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <label for="zip" class="form-label">ZIP Code:</label>
+                <input
+                  type="text"
+                  id="zip"
+                  formControlName="zip"
+                  class="form-control"
+                  name="zip"
+                  [(ngModel)]="zip"
+                  required
+                /><!-- [(ngModel)]="zip" -->
+                <div
+                  class="alert alert-danger"
+                  *ngIf="
+                    regForm.controls.zip.touched && regForm.controls.zip.invalid
+                  "
+                >
+                  Zip should not be blank or invalid
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <label for="distance" class="form-label">Distance:</label>
+                <input
+                  type="number"
+                  id="distance"
+                  formControlName="distance"
+                  class="form-control"
+                  name="distance"
+                  [(ngModel)]="distance"
+                  required
+                /><!-- [(ngModel)]="zip" -->
+                <div
+                  class="alert alert-danger"
+                  *ngIf="
+                    regForm.controls.distance.touched && regForm.controls.distance.invalid
+                  "
+                >
+                  distance should not be blank or invalid
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="float-end ">
+            <!-- Submit button -->
+
+             <button
+             type="submit"
+             class="btn btn-primary btn-rounded py-2 ml-2 px-4 mb-5"
+             style="margin-left: 10px"
+             (click)="makePayment()"
+           >
+             Pay
+           </button>
+           <button
+             type="button"
+             class="btn btn-secondary btn-rounded py-2 px-4 mb-5"
+             style="margin-right: 10px"
+             (click)="payWithCash()"
+           >
+             Pay with Cash 
+           </button>
+           <div *ngIf="alertmsg" class="alert alert-danger">{{message }}</div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 mt-5 mb-5 ">
+    <div class="card mb-4">
+      <div class="card-header bg-dark text-light py-3">
+        
+        <h5 class="mb-0">Summary</h5>
+      </div>
+      <div *ngIf="cartItems.length > 0"></div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <!-- <li  class="list-group-item"> -->
+          <li *ngFor="let cartItem of cartItems" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+            {{ cartItem.foodItem.name }}-
+            {{ cartItem.quantity }} pcs
+            <span>{{ cartItem.totalFoodItemCost | currency : "INR" }}</span>
+          </li>
+          <hr>
+          <li class=" list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 ">
+            <div>
+              <strong>Total amount</strong>
+              <strong>
+                <p class="mb-0">(including VAT)</p>
+              </strong>
+            </div>
+            <span><strong>{{ amount | currency : "INR" }}</strong></span>
+          </li>
+        
+        </ul>
+
+        <!-- <button type="button" class="btn btn-primary btn-lg btn-block">
+          Make purchase
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>

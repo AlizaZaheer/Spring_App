@@ -1,0 +1,158 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)) !important;">
+
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/" style="font-size: 40px">
+      <img src="../assets/images/food-munch-logo-light.png" alt="FoodBox Logo" style="height: 80px; width: 80px; line-height: 1rem;" >
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon" style="color: #ffffff"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li
+          class="nav-item"
+          *ngIf="adminSession"
+          routerLinkActive="active-link"
+        >
+          <a class="nav-link active" routerLink="/manage-categories">
+            <i class="material-icons">category</i>
+          </a>
+        </li>
+        <li
+          class="nav-item"
+          *ngIf="adminSession"
+          routerLinkActive="active-link"
+        >
+          <a class="nav-link active" routerLink="/view-orders">
+            <i class="material-icons"> receipt_long</i>
+          </a>
+        </li>
+
+        <li
+          class="nav-item"
+          *ngIf="adminSession"
+          routerLinkActive="active-link"
+        >
+          <a class="nav-link active" routerLink="/view-reviews">
+            <i class="material-icons"> reviews</i>
+          </a>
+        </li>
+        <li
+          class="nav-item"
+          *ngIf="adminSession"
+          routerLinkActive="active-link"
+        >
+          <a class="nav-link active" routerLink="/manage-queries">
+            <i class="material-icons">contact_support</i>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="userSession" routerLinkActive="active-link">
+          <a class="nav-link active" routerLink="/foodlist">
+            <i class="material-icons">restaurant_menu</i>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="userSession" routerLinkActive="active-link">
+          <a class="nav-link active" routerLink="/cart">
+            <i class="material-icons">shopping_cart</i>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="userSession" routerLinkActive="active-link">
+          <a class="nav-link active" routerLink="/review">
+            <i class="material-icons">reviews</i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" routerLinkActive="active-link">
+          <a class="nav-link active" routerLink="/about-us">
+            <i class="material-icons">people</i>
+            <span class="icon-text">About Us</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!adminSession">
+          <a
+            class="nav-link active"
+            routerLink="/contact-us"
+            routerLinkActive="active-link"
+          >
+            <i class="material-icons">contact_support</i>
+            <span class="icon-text">Contact Us</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!adminSession && !userSession">
+          <a
+            class="nav-link active"
+            routerLink="/admin-login-register"
+            routerLinkActive="active-link"
+          >
+            <i class="material-icons">login</i>
+            <span class="icon-text">Admin</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="adminSession">
+          <a
+            class="nav-link active"
+            routerLink="/admin-dashboard"
+            routerLinkActive="active-link"
+          >
+            <i class="material-icons">account_circle</i>
+            <span class="icon-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="userSession">
+          <a
+            class="nav-link active"
+            routerLink="/user-dashboard"
+            routerLinkActive="active-link"
+          >
+            <i class="material-icons">account_circle</i>
+            <span class="icon-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="adminSession">
+          <a
+            class="nav-link active"
+            routerLink="/logout"
+            (click)="adminLogout()"
+            routerLinkActive="active-link"
+          >
+            <i class="material-icons">logout</i>
+            <span class="icon-text">Logout</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="userSession">
+          <a
+            class="nav-link active"
+            routerLink="/logout"
+            (click)="userLogout()"
+            routerLinkActive="active-link"
+          >
+            <i class="material-icons">logout</i>
+            <span class="icon-text">Logout</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!adminSession && !userSession">
+          <a
+            class="nav-link active"
+            routerLink="/user-login-register"
+            routerLinkActive="active-link"
+          >
+            <i class="material-icons">login</i>
+            <span class="icon-text">User</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,65 @@
+<div class="vh-70 d-flex justify-content-center align-items-center bg-dark text-light">
+  <div>
+      <div class="mb-4 text-center text-success">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="75" height="75"
+              fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+          </svg>
+      </div>
+      <div class="text-center">
+        <div class="text-container">
+          <h1>Payment Successful</h1>
+        </div>
+          <h3 class="mb-4">Your Order is on the way.................. <i class="fa fa-truck"></i></h3>
+         
+          
+          <button [routerLink]="['/review']" class="btn btn-lg btn-primary mb-4">Please provide your Review</button>
+      </div>
+  </div>
+</div>
+
+<div class="container mt-4 bg-dark text-light">
+  <h3 class="">User: <span class="text-warning">{{ user.name}}</span></h3>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Order Details:</h3>
+      <table class="text-light table table-hover table-bordered">
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+        <tr *ngFor="let item of orderDetails | keyvalue">
+          <td>{{ item.key }}</td>
+          <td>{{ item.value }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <h3>Payment Details:</h3>
+      <table class="text-light table table-bordered table-hover">
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Amount</td>
+        
+            <td>{{ (totalAmount) | currency:"INR" }}</td>
+        </tr>
+        
+        <tr>
+          <td>Distance</td>
+          <td>{{ orderDetails.distance }}</td>
+        </tr>
+        <tr>
+          <td>Payment Method</td>
+          <td>{{ orderDetails.paymentMethod }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,40 @@
+<div class="container">
+  <h2 style="color: transparent; background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Restaurant Management</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h4 style="color: #d2b204;">Add New Restaurant</h4>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="newCategoryName" placeholder="Enter cuisine name">
+        <button class="btn" style="background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)); color: #d2b204;" type="button" (click)="addCategory(newCategoryName)">
+          <i class="material-icons">add</i> Add
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr style="border-color: #d2b204;">
+  <h4 style="color: transparent; background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Restaurant List</h4>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Restaurant Name</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{ category.name }}</td>
+          <td class="text-end">
+            <button class="btn btn-sm" style="background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)); color: #d2b204;" (click)="manageFoodItems(category.categoryId)">
+              <i class="material-icons">restaurant_menu</i> Manage Food Items
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteCategory(category.categoryId)">
+              <i class="material-icons">delete</i> Delete
+            </button>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
